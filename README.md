@@ -43,7 +43,9 @@ In this notebook, we will explore implications and estimation of this IRL-based 
 
 Recall that for a vector of $N$ stocks, we introduced a size $2 N$-action vector ${\bf a}_t=[{\bf u}_t^{(+)}, {\bf u}_t^{(-)}]$, so that an action ${\bf u}_t$ was defined as a difference of two non-negative numbers ${\bf u}_t = {\bf u}_t^{(+)} - {\bf u}_t^{(-)} = [{\bf 1}, - {\bf 1}] {\bf a}_t \equiv {\bf 1}{-1}^{T} {\bf a}_t$.
 
-Therefore, the joint distribution of ${\bf a}_t= \[{\bf u}_t^{(+)}, {\bf u}_t^{(-)}\]$ is given by our Gaussian policy $\pi_{\theta} ({\bf a}_t |{\bf y}_t)$. This means that the distribution of ${\bf u}_t = {\bf u}_t^{(+)} - {\bf u}_t^{(-)}$ is also Gaussian. Let us write it therefore as follows:
+Therefore, the joint distribution of ${\bf a}_t=[{\bf u}_t^{(+)}, {\bf u}_t^{(-)}]$ is given by our Gaussian policy 
+
+$\pi_{\theta}(\bf{a}_t|\bf{y}_t)$. This means that the distribution of ${\bf u}_t = {\bf u}_t^{(+)} - {\bf u}_t^{(-)}$ is also Gaussian. Let us write it therefore as follows: 
 
 $$
 \pi_{\theta}({\bf u}_t |{\bf y}_t ) =   \mathcal{N}\left({\bf u}_t | \bf{U}_0 + \bf{U}_1 {\bf y}_t, \Sigma_u \right) 
