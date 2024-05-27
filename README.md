@@ -19,7 +19,7 @@ In this notebook we:
 
 **Instructions on packages**
 
-- We will be using Python 3 in this project. We
+- We will be using Python 3 in this project.
 - We use TensorFlow Compat V1
 
 
@@ -28,13 +28,13 @@ In this notebook we:
 - Know how to enhance a market-optimal portfolio policy by using your private signals. 
 - Be able to implement trading strategies based on this method.
 
-## The IRL-based model of stock returns
+## The IRL-based model
 
 The optimal investment policy in the problem of inverse portfolio optimization is a Gaussian policy (see article):
 
 $$ \pi_{\theta}({\bf a}_t |{\bf y}_t ) =   \mathcal{N}\left({\bf a}_t | \bf{A}_0 + \bf{A}_1 {\bf y}_t, \Sigma_p \right) $$
 
-Here $ {\bf y}_t $ is a vector of dollar position in the portfolio, and $ \bf{A}_0 $, $ \bf{A}_1 $ and $ \Sigma_p $ are parameters defining a Gaussian policy.   
+Here $$ {\bf y}_t $$ is a vector of dollar position in the portfolio, and $ \bf{A}_0 $, $ \bf{A}_1 $ and $ \Sigma_p $ are parameters defining a Gaussian policy.   
 
 Such Gaussian policy is found for both cases of a single investor and a market portfolio. It's computed through a numerical scheme that can iteratively compute coefficients $ \bf{A}_0$, $ \bf{A}_1 $ and $ \Sigma_p $ using a combination of a RL algorithm called G-learning and a trajectory optimization algorithm.
 
@@ -67,7 +67,6 @@ The most important feature of this expression that we need going forward is is l
 This is the only result that we will use in order to construct a simple dynamic market model resulting from our IRL model. We use a deterministic limit of this equation, where in addition we set $ \bf{U}_0 = \bf{U}_1^{(z)} = 0 $, and replace $ \bf{U}_1^{(x)} \rightarrow \phi $ to simplify the notation. We thus obtain a simple deterministic policy
 
 $$
-\label{determ_u}
 {\bf u}_t =  \phi  {\bf x}_t 
 $$
 
