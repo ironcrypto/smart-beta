@@ -41,19 +41,15 @@ Such Gaussian policy is found for both cases of a single investor and a market p
 In this notebook, we will explore implications and estimation of this IRL-based model for the most interesting case - the market portfolio. It turns out that for this case, the model can be estimated in an easier way using a conventional Maximum Likelihood approach. To this end, we re-formulate the model for this particular case in three easy steps.
 
 
-Recall that for a vector of $N$ stocks, we introduced a size $2 N$-action vector 
-${\bf a}_t = [{\bf u}_t^{(+)}, {\bf u}_t^{(-)}]$, so that an action ${\bf u}_t$ was defined as a difference of two non-negative numbers 
-${\bf u}_t = {\bf u}_t^{(+)} -  {\bf u}_t^{(-)} = [{\bf 1}, - {\bf 1}] {\bf a}_t \equiv {\bf 1}_{-1}^{T} {\bf a}_t$.
+Recall that for a vector of $N$ stocks, we introduced a size $2 N$-action vector ${\bf a}_t=[{\bf u}_t^{(+)}, {\bf u}_t^{(-)}]$, so that an action ${\bf u}_t$ was defined as a difference of two non-negative numbers ${\bf u}_t = {\bf u}_t^{(+)} -  {\bf u}_t^{(-)} = [{\bf 1}, - {\bf 1}] {\bf a}_t \equiv {\bf 1}_{-1}^{T} {\bf a}_t$.
 
-Therefore, the joint distribution of ${\bf a}_t = [{\bf u}_t^{(+)}, {\bf u}_t^{(-)} ]$ is given by our Gaussian policy
-$\pi_{\theta}({\bf a}_t |{\bf y}_t )$. This means that the distribution of 
-${\bf u}_t = {\bf u}_t^{(+)} -  {\bf u}_t^{(-)}$ is also Gaussian. Let us write it therefore as follows:
+Therefore, the joint distribution of ${\bf a}_t = [{\bf u}_t^{(+)}, {\bf u}_t^{(-)}]$ is given by our Gaussian policy $\pi_{\theta}({\bf a}_t |{\bf y}_t )$. This means that the distribution of ${\bf u}_t = {\bf u}_t^{(+)} - {\bf u}_t^{(-)}$ is also Gaussian. Let us write it therefore as follows:
 
 $$
 \pi_{\theta}({\bf u}_t |{\bf y}_t ) =   \mathcal{N}\left({\bf u}_t | \bf{U}_0 + \bf{U}_1 {\bf y}_t, \Sigma_u \right) 
 $$
 
-Here $\bf{U}_0 = {\bf 1}_{-1}^{T} \bf{A}_0$ and $\bf{U}_1 = {\bf 1}_{-1}^{T}  \bf{A}_1$.
+Here $\bf{U}_{0}={\bf 1}_{-1}^{T}\bf{A}_0$ and $\bf{U}_1={\bf 1}_{-1}^{T}\bf{A}_1$.
 
 This means that ${\bf u}_t$ is a Gaussian random variable that we can write as follows:
 
@@ -76,6 +72,7 @@ and $\circ$ stands for an element-wise (Hadamard) product):
 $$
 X_{t+ \Delta t} = (1 + r_t \Delta t) \circ (  X_t +  u_t  \Delta t)  
 $$
+
 $$
 r_t   = r_f + {\bf w} {\bf z}_t -  \mu  u_t + \frac{\sigma}{ \sqrt{ \Delta t}} \varepsilon_t 
 $$
@@ -103,23 +100,16 @@ Without signals ${\bf z}_t$, this process is known in the literature as a Geomet
 ## Model calibration with moving average signals 
 Recall the equation for the dynamics of market portfolio: 
 
-$$ \Delta {\bf x}_t = \kappa_x \circ  {\bf x}_t \circ 
-\left( {\bf W}{\bf z}_t'  - {\bf x}_t \right)  +  {\bf x}_t  \circ \varepsilon_t^{(x)} $$
+$$ \Delta {\bf x}_t = \kappa_x \circ  {\bf x}_t \circ \left( {\bf W}{\bf z}_t'  - {\bf x}_t \right)  +  {\bf x}_t  \circ \varepsilon_t^{(x)} $$
 
 Here we change the notation a bit. Now ${\bf z}_t'$ is an extended vector of predictors that includes a constant unit predictor ${\bf z}_t' = [1, {\bf z}_t ]^T$. Therefore, for each name, if you have $K = 2$ signals, an extended vector of signals ${\bf z}_t'$ is of length $K + 1$, and the  $W$ stands for a factor loading matrix.
 The negative log-likelihood function for observable data with this model is therefore
 
-$$  LL_M (\Theta) = - \log \prod_{t=0}^{T-1} 
-\frac{1}{ \sqrt{ (2 \pi)^{N}  \left| \Sigma_x \right| }} 
-e^{ - \frac{1}{2} \left(   {\bf v}_t
- \right)^{T} 
-\Sigma_x^{-1}  
-\left(  {\bf v}_t \right)} $$
+$$  LL_M (\Theta) = - \log \prod_{t=0}^{T-1} \frac{1}{ \sqrt{ (2 \pi)^{N}  \left| \Sigma_x \right| }} e^{ - \frac{1}{2} \left({\bf v}_t \right)^{T} \Sigma_x^{-1}\left({\bf v}_t right)} $$
 
 where
 
-$$  {\bf v}_t \equiv \frac{{\bf x}_{t+1} -  {\bf x}_{t}}{{\bf x}_{t}}  
--  \kappa_x \circ \left({\bf W} {\bf z}_t'   - {\bf x}_t \right)  $$
+$$  {\bf v}_t \equiv \frac{{\bf x}_{t+1} -  {\bf x}_{t}}{{\bf x}_{t}} -  \kappa_x \circ \left({\bf W} {\bf z}_t'   - {\bf x}_t \right)  $$
 
 and $\Sigma_x$ is the covariance matrix that was specified above in terms of other parameters. Here we directly infer the value of $\Sigma_x$, along with other parameters, from data, so we will not use these previous expressions. 
 
