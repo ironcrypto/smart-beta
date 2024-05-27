@@ -7,7 +7,7 @@ In this notebook we:
 - Investigate the role and impact of choices of different signals on model estimation and trading strategies
 - Compare simple IRL-based and UL-based trading strategies
 
-**Notebook structure:**
+**Pipeline structure:**
 
 - **Part 1**: Complete the model estimation for the DJI portfolio of 30 stocks, and simple signals such as simple moving averages constructed below.
 
@@ -23,7 +23,7 @@ In this notebook we:
 - We use TensorFlow Compat V1
 
 
-**Objective of the notebook:**
+**Objective:**
 - Get experience with building and estimation of an IRL based model of market dynamics, and learn how this IRL approach extends the famous Black-Litterman model (see F. Black and R. Litterman, "Global Portfolio Optimization", Financial Analyst Journal, Sept-Oct. 1992, 28-43, and  D. Bertsimas, V. Gupta, and I.Ch. Paschalidis, "Inverse Optimization: A New Perspective on the Black-Litterman Model", Operations Research, Vol.60, No.6, pp. 1389-1403 (2012), I.Halperin and I. Feldshteyn "Market Self-Learning of Signals, Impact and Optimal Trading: Invisible Hand Inference with Free Energy", https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3174498). 
 - Know how to enhance a market-optimal portfolio policy by using your private signals. 
 - Be able to implement trading strategies based on this method.
@@ -34,20 +34,20 @@ The optimal investment policy in the problem of inverse portfolio optimization i
 
 $$ \pi_{\theta}({\bf a}_t |{\bf y}_t ) =   \mathcal{N}\left({\bf a}_t | \bf{A}_0 + \bf{A}_1 {\bf y}_t, \Sigma_p \right) $$
 
-Here $$ {\bf y}_t $$ is a vector of dollar position in the portfolio, and $ \bf{A}_0 $, $ \bf{A}_1 $ and $ \Sigma_p $ are parameters defining a Gaussian policy.   
+Here ${\bf y}_t$ is a vector of dollar position in the portfolio, and $\bf{A}_0$, $\bf{A}_1$ and $ \Sigma_p $ are parameters defining a Gaussian policy.   
 
-Such Gaussian policy is found for both cases of a single investor and a market portfolio. It's computed through a numerical scheme that can iteratively compute coefficients $ \bf{A}_0$, $ \bf{A}_1 $ and $ \Sigma_p $ using a combination of a RL algorithm called G-learning and a trajectory optimization algorithm.
+Such Gaussian policy is found for both cases of a single investor and a market portfolio. It's computed through a numerical scheme that can iteratively compute coefficients $\bf{A}_0$, $\bf{A}_1$ and $\Sigma_p$ using a combination of a RL algorithm called G-learning and a trajectory optimization algorithm.
 
 In this notebook, we will explore implications and estimation of this IRL-based model for the most interesting case - the market portfolio. It turns out that for this case, the model can be estimated in an easier way using a conventional Maximum Likelihood approach. To this end, we re-formulate the model for this particular case in three easy steps.
 
 
 Recall that for a vector of $ N $ stocks, we introduced a size $ 2 N $-action vector 
-$ {\bf a}_t = [{\bf u}_t^{(+)}, {\bf u}_t^{(-)}] $, so that an action $ {\bf u}_t $ was defined as a difference of two non-negative numbers 
-$ {\bf u}_t = {\bf u}_t^{(+)} -  {\bf u}_t^{(-)} = [{\bf 1}, - {\bf 1}] {\bf a}_t \equiv {\bf 1}_{-1}^{T} {\bf a}_t $.
+${\bf a}_t = [{\bf u}_t^{(+)}, {\bf u}_t^{(-)}]$, so that an action $ {\bf u}_t $ was defined as a difference of two non-negative numbers 
+${\bf u}_t = {\bf u}_t^{(+)} -  {\bf u}_t^{(-)} = [{\bf 1}, - {\bf 1}] {\bf a}_t \equiv {\bf 1}_{-1}^{T} {\bf a}_t$.
 
-Therefore, the joint distribution of $ {\bf a}_t = [{\bf u}_t^{(+)}, {\bf u}_t^{(-)} ] $ is given by our Gaussian policy
-$  \pi_{\theta}({\bf a}_t |{\bf y}_t ) $. This means that the distribution of 
-$ {\bf u}_t = {\bf u}_t^{(+)} -  {\bf u}_t^{(-)} $ is also Gaussian. Let us write it therefore as follows:
+Therefore, the joint distribution of ${\bf a}_t = [{\bf u}_t^{(+)}, {\bf u}_t^{(-)} ]$ is given by our Gaussian policy
+$\pi_{\theta}({\bf a}_t |{\bf y}_t )$. This means that the distribution of 
+${\bf u}_t = {\bf u}_t^{(+)} -  {\bf u}_t^{(-)}$ is also Gaussian. Let us write it therefore as follows:
 
 $$
 \pi_{\theta}({\bf u}_t |{\bf y}_t ) =   \mathcal{N}\left({\bf u}_t | \bf{U}_0 + \bf{U}_1 {\bf y}_t, \Sigma_u \right) 
