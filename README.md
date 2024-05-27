@@ -41,17 +41,15 @@ Such Gaussian policy is found for both cases of a single investor and a market p
 In this notebook, we will explore implications and estimation of this IRL-based model for the most interesting case - the market portfolio. It turns out that for this case, the model can be estimated in an easier way using a conventional Maximum Likelihood approach. To this end, we re-formulate the model for this particular case in three easy steps.
 
 
-Recall that for a vector of $N$ stocks, we introduced a size $2 N$-action vector ${\bf a}_t=[{\bf u}_t^{(+)}, {\bf u}_t^{(-)}]$, so that an action ${\bf u}_t$ was defined as a difference of two non-negative numbers ${\bf u}_t = {\bf u}_t^{(+)} - {\bf u}_t^{(-)} = [{\bf 1}, - {\bf 1}] {\bf a}_t \equiv {\bf 1}{-1}^{T} {\bf a}_t$.
+Recall that for a vector of $N$ stocks, we introduced a size $2 N$-action vector $`{\bf a}_t=[{\bf u}_t^{(+)}, {\bf u}_t^{(-)}]`$, so that an action ${\bf u}_t$ was defined as a difference of two non-negative numbers $`{\bf u}_t = {\bf u}_t^{(+)} - {\bf u}_t^{(-)} = [{\bf 1}, - {\bf 1}] {\bf a}_t \equiv {\bf 1}{-1}^{T} {\bf a}_t`$.
 
-Therefore, the joint distribution of ${\bf a}_t=[{\bf u}_t^{(+)}, {\bf u}_t^{(-)}]$ is given by our Gaussian policy 
-
-$\pi_{\theta}(\bf{a}_t|\bf{y}_t)$. This means that the distribution of ${\bf u}_t = {\bf u}_t^{(+)} - {\bf u}_t^{(-)}$ is also Gaussian. Let us write it therefore as follows: 
+Therefore, the joint distribution of $`{\bf a}_t=[{\bf u}_t^{(+)}, {\bf u}_t^{(-)}]`$ is given by our Gaussian policy $`\pi_{\theta}(\bf{a}_t|\bf{y}_t)`$. This means that the distribution of ${\bf u}_t = {\bf u}_t^{(+)} - {\bf u}_t^{(-)}$ is also Gaussian. Let us write it therefore as follows: 
 
 $$
 \pi_{\theta}({\bf u}_t |{\bf y}_t ) =   \mathcal{N}\left({\bf u}_t | \bf{U}_0 + \bf{U}_1 {\bf y}_t, \Sigma_u \right) 
 $$
 
-Here $\bf{U}_{0}={\bf 1}_{-1}^{T}\bf{A}_0$ and $\bf{U}_1={\bf 1}_{-1}^{T}\bf{A}_1$.
+Here $`\bf{U}_{0}={\bf 1}_{-1}^{T}\bf{A}_0`$ and $`\bf{U}_1={\bf 1}_{-1}^{T}\bf{A}_1`$.
 
 This means that ${\bf u}_t$ is a Gaussian random variable that we can write as follows:
 
@@ -88,9 +86,10 @@ $$
 Finally, assuming that $\phi \Delta t \ll 1$ and taking the continuous-time limit $\Delta t \rightarrow dt$, we obtain 
 
 $$
-d X_t = \kappa \circ X_t \circ \left( \frac{\theta}{\kappa} - X_t \right) dt +  X_t \circ \left[ {\bf w} {\bf z}_t \, dt + \sigma d W_t \right]
+d X_t = \kappa \circ X_t \circ \left( \frac{\theta}{\kappa} - X_t \right) dt +  X_t \circ \left[{\bf w} {\bf z}_t \, dt + \sigma d W_t \right]
 $$
-where $\kappa   =   \mu  \phi$, $\theta  =   r_f + \phi$, and $W_t$ is a standard Brownian motion.
+
+where $`\kappa =\mu\phi`$, $`\theta=r_f +\phi`$, and $`W_t`$ is a standard Brownian motion.
 
 Please note that this equation describes dynamics with a quadratic mean reversion. It is quite different from models with linear mean reversion such as the Ornstein-Uhlenbeck (OU) process. 
 
