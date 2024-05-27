@@ -105,11 +105,11 @@ $$ \Delta {\bf x}_t = \kappa_x \circ  {\bf x}_t \circ \left( {\bf W}{\bf z}_t'  
 Here we change the notation a bit. Now ${\bf z}_t'$ is an extended vector of predictors that includes a constant unit predictor ${\bf z}_t' = [1, {\bf z}_t ]^T$. Therefore, for each name, if you have $K = 2$ signals, an extended vector of signals ${\bf z}_t'$ is of length $K + 1$, and the  $W$ stands for a factor loading matrix.
 The negative log-likelihood function for observable data with this model is therefore
 
-$$  LL_M (\Theta) = - \log \prod_{t=0}^{T-1} \frac{1}{ \sqrt{ (2 \pi)^{N}  \left| \Sigma_x \right| }} e^{ - \frac{1}{2} \left({\bf v}_t \right)^{T} \Sigma_x^{-1}\left({\bf v}_t right)} $$
+$$ LL_M(\Theta) = - \log\prod_{t=0}^{T-1} \frac{1}{\sqrt{(2 \pi)^{N} \left| \Sigma_x \right| }} e^{ - \frac{1}{2} \left({\bf v}_t \right)^{T} \Sigma_x^{-1}\left({\bf v}_t \right)} $$
 
 where
 
-$$  {\bf v}_t \equiv \frac{{\bf x}_{t+1} -  {\bf x}_{t}}{{\bf x}_{t}} -  \kappa_x \circ \left({\bf W} {\bf z}_t'   - {\bf x}_t \right)  $$
+$$  {\bf v}_t \equiv \frac{{\bf x}_{t+1} - {\bf x}_{t}}{{\bf x}_{t}} -  \kappa_x \circ \left({\bf W} {\bf z}_t'   - {\bf x}_t \right)  $$
 
 and $\Sigma_x$ is the covariance matrix that was specified above in terms of other parameters. Here we directly infer the value of $\Sigma_x$, along with other parameters, from data, so we will not use these previous expressions. 
 
