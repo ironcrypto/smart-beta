@@ -111,11 +111,7 @@ The negative log-likelihood function for observable data with this model is ther
 
 $$ LL_M(\Theta) = - \log\prod_{t=0}^{T-1} \frac{1}{\sqrt{(2 \pi)^{N} \left| \Sigma_x \right| }} e^{ - \frac{1}{2} \left({\bf v}_t \right)^{T} \Sigma_x^{-1}\left({\bf v}_t \right)} $$
 
-where
-
-$$`
-{\bf v}_t \equiv \frac{{\bf x}_{t+1}-{\bf x}_t} {{\bf x}_t} - \kappa_x \circ \left({\bf W} {\bf z}_t' - {\bf x}_t \right)
-`$$
+where $`{\bf v}_t \equiv \frac{{\bf x}_{t+1}-{\bf x}_t} {{\bf x}_t} - \kappa_x \circ \left({\bf W} {\bf z}_t' - {\bf x}_t \right)`$
 
 and $\Sigma_x$ is the covariance matrix that was specified above in terms of other parameters. Here we directly infer the value of $\Sigma_x$, along with other parameters, from data, so we will not use these previous expressions. 
 
