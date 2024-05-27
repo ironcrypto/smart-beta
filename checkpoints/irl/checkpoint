@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/stephanethomas/myML/smart-beta-bt/checkpoints/irl/irl_market.chkpt"
+all_model_checkpoint_paths: "/Users/stephanethomas/myML/smart-beta-bt/checkpoints/irl/irl_market.chkpt"
