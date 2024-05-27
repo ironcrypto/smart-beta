@@ -74,15 +74,18 @@ X_{t+ \Delta t} = (1 + r_t \Delta t) \circ (  X_t +  u_t  \Delta t)
 $$
 
 $$
-r_t   = r_f + {\bf w} {\bf z}_t -  \mu  u_t + \frac{\sigma}{ \sqrt{ \Delta t}} \varepsilon_t 
+r_t=r_f+{\bf w} {\bf z}_t -\mu  u_t + \frac{\sigma}{\sqrt{\Delta t}} \varepsilon_t 
 $$
+
 where $r_f$ is a risk-free rate, $\Delta t$ is a time step, ${\bf z}_t$ is a vector of predictors with weights ${\bf w}$, $\mu$ is a market impact parameter with a linear impact specification, and $\varepsilon_t \sim \mathcal{N} (\cdot| 0, 1)$ is a white noise residual.
 
 
 Eliminating $u_t$ from these expressions and simplifying, we obtain
+
 $$ \Delta  X_t = \mu  \phi  ( 1 + \phi \Delta t) \circ  X_t \circ \left(  \frac{r_f (1 + \phi \Delta t)  + \phi}{ \mu \phi (1+ \phi \Delta t )}  -  X_t \right) \Delta t + 
 ( 1 + \phi \Delta t) X_t  \circ \left[ {\bf w} {\bf z}_t  \Delta t +  \sigma \sqrt{ \Delta t} \varepsilon_t \right]
 $$
+
 Finally, assuming that $\phi \Delta t \ll 1$ and taking the continuous-time limit $\Delta t \rightarrow dt$, we obtain 
 
 $$
@@ -103,14 +106,16 @@ Recall the equation for the dynamics of market portfolio:
 
 $$ \Delta {\bf x}_t = \kappa_x \circ  {\bf x}_t \circ \left( {\bf W}{\bf z}_t'  - {\bf x}_t \right)  +  {\bf x}_t  \circ \varepsilon_t^{(x)} $$
 
-Here we change the notation a bit. Now ${\bf z}_t'$ is an extended vector of predictors that includes a constant unit predictor ${\bf z}_t' = [1, {\bf z}_t ]^T$. Therefore, for each name, if you have $K = 2$ signals, an extended vector of signals ${\bf z}_t'$ is of length $K + 1$, and the  $W$ stands for a factor loading matrix.
+Here we change the notation a bit. Now ${\bf z}_t'$ is an extended vector of predictors that includes a constant unit predictor $`{\bf z}_t' = [1, {\bf z}_t ]^T`$. Therefore, for each name, if you have $K = 2$ signals, an extended vector of signals ${\bf z}_t'$ is of length $K + 1$, and the  $W$ stands for a factor loading matrix.
 The negative log-likelihood function for observable data with this model is therefore
 
 $$ LL_M(\Theta) = - \log\prod_{t=0}^{T-1} \frac{1}{\sqrt{(2 \pi)^{N} \left| \Sigma_x \right| }} e^{ - \frac{1}{2} \left({\bf v}_t \right)^{T} \Sigma_x^{-1}\left({\bf v}_t \right)} $$
 
 where
 
-$$  {\bf v}_t \equiv \frac{{\bf x}_{t+1} - {\bf x}_{t}}{{\bf x}_{t}} -  \kappa_x \circ \left({\bf W} {\bf z}_t'   - {\bf x}_t \right)  $$
+$$ 
+{\bf v}_t \equiv \frac{{\bf x}_{t+1} - {\bf x}_{t}}{{\bf x}_{t}} - \kappa_x \circ \left({\bf W} {\bf z}_t' - {\bf x}_t \right)
+$$
 
 and $\Sigma_x$ is the covariance matrix that was specified above in terms of other parameters. Here we directly infer the value of $\Sigma_x$, along with other parameters, from data, so we will not use these previous expressions. 
 
