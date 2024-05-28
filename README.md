@@ -1,5 +1,4 @@
-# NFT Infra index Methodology
-## Econometric estimation of an IRL-based market portfolio model
+# IRL-based market portfolio model to build a smart beta strategy
 
 In this notebook we: 
 
